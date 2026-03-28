@@ -85,6 +85,7 @@ push 后会自动创建 GitHub Release，并自动生成 release notes。
 当前检查内容：
 
 - `js/` 目录下所有非 `.min.js` 文件的 JavaScript 语法检查
+- `js/embed.dev.js` 和 `js/diagramly/Embed.js` 这两个历史模板文件默认跳过检查（结尾由外部替换补全）
 
 ## 后续可继续补的内容
 

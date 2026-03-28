@@ -22,6 +22,13 @@ jobs:
         run: |
           set -euo pipefail
           while IFS= read -r file; do
+            case "$file" in
+              js/embed.dev.js|js/diagramly/Embed.js)
+                echo "Skipping $file"
+                continue
+                ;;
+            esac
+
             echo "Checking $file"
             node --check "$file"
           done < <(find js -type f -name '*.js' ! -name '*.min.js' | sort)
