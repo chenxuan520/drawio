@@ -234,9 +234,12 @@ mxscript(drawDevUrl + 'js/diagramly/TrelloClient.js');
 mxscript(drawDevUrl + 'js/diagramly/GitLabFile.js');
 mxscript(drawDevUrl + 'js/diagramly/GitLabLibrary.js');
 mxscript(drawDevUrl + 'js/diagramly/GitLabClient.js');
+mxscript(drawDevUrl + 'js/diagramly/WebdevFile.js');
+mxscript(drawDevUrl + 'js/diagramly/WebdevClient.js');
 
 mxscript(drawDevUrl + 'js/diagramly/App.js');
 mxscript(drawDevUrl + 'js/diagramly/Menus.js');
+mxscript(drawDevUrl + 'js/diagramly/WebdevPatch.js');
 mxscript(drawDevUrl + 'js/diagramly/Pages.js');
 mxscript(drawDevUrl + 'js/diagramly/Trees.js');
 mxscript(drawDevUrl + 'js/diagramly/Minimal.js');

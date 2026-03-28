@@ -300,33 +300,42 @@ else
         {
             mxscript('js/app.min.js', function()
             {
-                mxScriptsLoaded = true;
-                checkAllLoaded();
-                
-                // Electron
-                if (mxIsElectron)
+                mxscript('js/diagramly/WebdevFile.js', function()
                 {
-                    mxscript('js/diagramly/DesktopLibrary.js', function()
+                    mxscript('js/diagramly/WebdevClient.js', function()
                     {
-                        mxscript('js/diagramly/ElectronApp.js', function()
+                        mxscript('js/diagramly/WebdevPatch.js', function()
                         {
-                            mxscript('js/extensions.min.js', function()
+                            mxScriptsLoaded = true;
+                            checkAllLoaded();
+
+                            // Electron
+                            if (mxIsElectron)
                             {
-                                mxscript('js/stencils.min.js', function()
+                                mxscript('js/diagramly/DesktopLibrary.js', function()
                                 {
-                                    mxscript('js/shapes-14-6-5.min.js', function()
+                                    mxscript('js/diagramly/ElectronApp.js', function()
                                     {
-                                        mxscript('js/PostConfig.js');
+                                        mxscript('js/extensions.min.js', function()
+                                        {
+                                            mxscript('js/stencils.min.js', function()
+                                            {
+                                                mxscript('js/shapes-14-6-5.min.js', function()
+                                                {
+                                                    mxscript('js/PostConfig.js');
+                                                });
+                                            });
+                                        });
                                     });
                                 });
-                            });
+                            }
+                            else if (!supportedDomain)
+                            {
+                                mxscript('js/PostConfig.js');
+                            }
                         });
                     });
-                }
-                else if (!supportedDomain)
-                {
-                    mxscript('js/PostConfig.js');
-                }
+                });
             });
         };
         
