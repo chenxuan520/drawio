@@ -526,7 +526,7 @@ WebdevClient.prototype.getFile = function(path, success, error)
 	}), error);
 };
 
-WebdevClient.prototype.saveFile = function(file, success, error)
+WebdevClient.prototype.doSaveFile = function(file, success, error)
 {
 	this.request('PUT', file.getId(), file.getData(), mxUtils.bind(this, function(req)
 	{
@@ -539,14 +539,25 @@ WebdevClient.prototype.saveFile = function(file, success, error)
 	});
 };
 
+WebdevClient.prototype.saveFile = function(file, success, error)
+{
+	this.ensureAuthorized(mxUtils.bind(this, function()
+	{
+		this.doSaveFile(file, success, error);
+	}), error);
+};
+
 WebdevClient.prototype.insertFile = function(title, data, success, error)
 {
-	var path = this.normalizePath('/' + encodeURIComponent(title));
-	var file = new WebdevFile(this.ui, data, {path: path, name: title});
-	this.saveFile(file, mxUtils.bind(this, function(meta)
+	this.ensureAuthorized(mxUtils.bind(this, function()
 	{
-		file.meta = meta;
-		success(file);
+		var path = this.normalizePath('/' + encodeURIComponent(title));
+		var file = new WebdevFile(this.ui, data, {path: path, name: title});
+		this.doSaveFile(file, mxUtils.bind(this, function(meta)
+		{
+			file.meta = meta;
+			success(file);
+		}), error);
 	}), error);
 };
 
